@@ -1,10 +1,12 @@
+from bitarray import bitarray
 n, q = map(int, input().split())
-isprime = [True] * (n+1)
+isprime = bitarray(n+1)
+isprime.setall(True)
 isprime[0] = False
 isprime[1] = False
 for i in range(2,n+1):
     if isprime[i]:
-        x = 2*i
+        x = i*i
         while x <= n:
             isprime[x] = False
             x += i
