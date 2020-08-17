@@ -2,21 +2,19 @@ s = input()
 l = len(s)
 attack = "RBL"
 response = "SKH"
-r = ""
+r = [] # apparently r = "" with r += "X" hits Time Limit Exceeded
 i = 0
 while i < l:
     if i < l-2:
-        #if s[i:i+3] in ["RBL", "RLB", "BRL", "BLR", "LRB", "LBR"]: #Time Limit Exceeded
         if s[i] != s[i+1] and s[i] != s[i+2] and s[i+1] != s[i+2]:
-            r += "C"
+            r.append("C")
             i += 3
             continue
-    #r += response[attack.index(s[i])] #Time Limit Exceeded
     if s[i] == "R":
-        r += "S"
+        r.append("S")
     elif s[i] == "B":
-        r += "K"
+        r.append("K")
     elif s[i] == "L":
-        r += "H"
+        r.append("H")
     i += 1
-print(r)
+print(''.join(r))
