@@ -1,0 +1,5 @@
+a, b = map(int, input().split())
+c, d = map(int, input().split())
+t = int(input())
+dist = abs(a-c) + abs(b-d)
+print("Y" if dist%2 == t%2 and dist <= t else "N")
