@@ -18,7 +18,7 @@ j = 299 # current date 27 Oct
 while not calendar[j]:
     j -= 1
     j %= 365
-# now calendar[j] is True, meaning, the previous birthday before today
+# now calendar[j] is True, meaning, the previous birthday today or earlier
 gap = 0
 bestgap = 0
 for i in range(j, j+365+365):
@@ -28,7 +28,7 @@ for i in range(j, j+365+365):
             bestgap = gap
             bestday = i%365
         elif gap == bestgap:
-            if (i%365 - 299)%365 < (bestday - 299)%365:
+            if (i%365 - 300)%365 < (bestday - 300)%365:
                 bestday = i%365
     else:
         gap = 0
