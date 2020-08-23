@@ -55,5 +55,12 @@ for _ in range(n):
 
     roman = romans[k-1]
     position = romansorted.index(roman)+1
-    if thousands > 0:
-        pass # what to do?
+    if position > 946:
+        position -= 1001
+        position -= 54 * thousands
+    elif position < 946:
+        position += 946 * thousands
+    else:
+        position = 946 * thousands
+
+    print(position)
