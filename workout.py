@@ -16,7 +16,7 @@ for i in range(30):
             currenttime += u[i%10] - ((currenttime - t[i%10]) % cycle) #has to wait
 
     # now using the machine, need to check if the other guy needs to wait
-    if currenttime >= t[i%10]:
+    if currenttime >= t[i%10] - cycle:
         x = currenttime
         y = x + usages[i%10]
         a = ((x - t[i%10]) // cycle) * cycle + t[i%10]
