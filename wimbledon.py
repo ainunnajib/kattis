@@ -6,16 +6,17 @@ for _ in range(n):
     players.append(p)
     umpires.append(u)
 
-pairs = [[0 for i in range(n)] for j in range(n)]
+sumpairs = []
 for i in range(n):
-    for j in range(i+1, n):
-        m = players[i]*players[j]
-        pairs[i][j] = m
-sumpairs = [sum(pairs[i]) for i in range(n)]
+    sum = 0
+    for j in range(n):
+        if i != j:
+            sum += players[i]*players[j]
+    sumpairs.append(sum)
 
 count = 0
 for k in range(n):
     for i in range(n):
         if i != k:
-            count += umpires[k] * (sumpairs[i] - pairs[i][k])
-print(count)
+            count += umpires[k] * (sumpairs[i] - players[i]*players[k])
+print(count//2)
