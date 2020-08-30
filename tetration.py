@@ -1,3 +1,2 @@
-import math
-x = float(input())
-print(math.exp(math.log(x)/x))
+N = float(input())
+print(N**(1/N))
