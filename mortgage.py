@@ -1,5 +1,9 @@
-x, y, n, r = map(float, input().split())
-while x != 0 or y != 0 or n != 0 or r != 0:
+import sys
+
+for line in sys.stdin.readlines():
+    x, y, n, r = map(float, line.split())
+    if x == 0 and y == 0 and n == 0 and r == 0:
+        break
     r /= 100
     r /= 12
     n *= 12
@@ -11,4 +15,3 @@ while x != 0 or y != 0 or n != 0 or r != 0:
         print('NO')
     else:
         print('YES')
-    x, y, n, r = map(float, input().split())
