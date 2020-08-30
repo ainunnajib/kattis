@@ -2,26 +2,11 @@ import sys
 inputs = iter(sys.stdin.readlines())
 n, m = map(int, next(inputs).split())
 while n + m > 0:
-    d = []
+    a = set()
     for _ in range(n):
-        d.append(int(next(inputs)))
-    count = 0
-    i = 0
+        a.add(int(next(inputs)))
+    b = set()
     for _ in range(m):
-        x = int(next(inputs))
-        if i >= n:
-            continue
-        if d[i] == x:
-            count += 1
-            i += 1
-        elif d[i] < x:
-            while d[i] < x:
-                i += 1
-                if i >= n:
-                    break
-            if i < n:
-                if d[i] == x:
-                    count += 1
-                    i += 1
-    print(count)
+        b.add(int(next(inputs)))
+    print(len(a&b))
     n, m = map(int, next(inputs).split())
