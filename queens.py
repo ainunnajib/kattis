@@ -1,34 +1,18 @@
+import sys
 n = int(input())
-b = [[False for i in range(n)] for j in range(n)]
-for _ in range(n):
-    x, y = map(int, input().split())
-    b[y][x] = True
-valid = True
-if sum([sum(r) for r in b]) != n:
-    valid = False
-for j in range(n):
-    for i in range(n):
-        if b[j][i]:
-            if sum(b[j]) > 1:
-                valid = False
-            if sum(b[x][i] for x in range(n)) > 1:
-                valid = False
-            total = 0
-            for d in range(1, n):
-                if x+d >= 0 and x+d < n and y+d >= 0 and y+d < n:
-                    if b[y+d][x+d]:
-                        valid = False
-                if x-d >= 0 and x-d < n and y-d >= 0 and y-d < n:
-                    if b[y-d][x-d]:
-                        valid = False
-                if x+d >= 0 and x+d < n and y-d >= 0 and y-d < n:
-                    if b[y-d][x+d]:
-                        valid = False
-                if x-d >= 0 and x-d < n and y+d >= 0 and y+d < n:
-                    if b[y+d][x-d]:
-                        valid = False
-
-if valid:
+r = [0 for i in range(n)]
+c = [0 for i in range(n)]
+s = [0 for i in range(2*n-1)]
+b = [0 for i in range(2*n-1)]
+for line in sys.stdin.readlines():
+    x, y = map(int, line.split())
+    r[y] += 1
+    c[x] += 1
+    z = x + y
+    s[z] += 1
+    z = (n-x-1) + y
+    b[z] += 1
+if min(r) == max(r) and min(r) == 1 and min(c) == max(c) and min(c) == 1 and max(s) == 1 and max(b) == 1:
     print('CORRECT')
 else:
     print('INCORRECT')
