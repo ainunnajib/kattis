@@ -1,6 +1,4 @@
-l = input().split()
-r = int(l[0])
-c = int(l[1])
+r, c = map(int, input().split())
 d = []
 for i in range(r):
     d.append(input())
@@ -11,13 +9,4 @@ for i in range(c):
         s += d[j][i]
     cols.append(s)
 ref = '_' * r
-inline = True
-count = 0
-for line in cols:
-    if line != ref:
-        if (inline):
-            count += 1
-        inline = False
-    else:
-        inline = True
-print(count)
+print(cols.count(ref)+1)
