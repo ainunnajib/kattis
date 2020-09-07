@@ -1,25 +1,17 @@
 from itertools import combinations_with_replacement
 from collections import defaultdict
-LIMIT = 10000000 #33000000
-isprime = [True for i in range(LIMIT)]
-for i in range(2, 5746):
-    for j in range(i*i, LIMIT, i):
-        isprime[j] = False
-primes = []
-for p in range(2, LIMIT):
-    if isprime[p]:
-        primes.append(p)
 
 n = int(input())
 pd = defaultdict(int)
-for p in primes:
-    while n%p == 0:
-        n //= p
-        pd[p] += 1
+while n%2 == 0:
+    n //= 2
+    pd[2] += 1
+for x in range(3, 33000000, 2):
+    while n%x == 0:
+        n //= x
+        pd[x] +=1
     if n == 1:
         break
-if n > 1:
-    pd[n] += 1
 
 k = 0
 tuples = {}
