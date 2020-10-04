@@ -1,4 +1,4 @@
-from sys import stdin
+from sys import stdin, stdout
 
 class UFDS:
     def __init__(self, n):
@@ -50,6 +50,6 @@ for _ in range(q):
     if s[0] == '?':
         x = u.find(a)
         y = u.find(b)
-        print('yes' if x == y else 'no')
+        stdout.write('yes\n' if x == y else 'no\n')
     elif s[0] == '=':
         u.union(a, b)
