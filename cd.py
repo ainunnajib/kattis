@@ -1,14 +1,15 @@
-# submit this into Kattis as Python 2 instead of Python 3
-# Python 3 = TLE, Python 2 = AC
 import sys
-inputs = iter(sys.stdin.readlines())
-n, m = map(int, next(inputs).split())
+n, m = map(int, sys.stdin.readline().split())
 while n + m > 0:
     a = set()
     for _ in range(n):
-        a.add(next(inputs))
-    b = set()
+        a.add(int(sys.stdin.readline()))
+
+    count = 0
     for _ in range(m):
-        b.add(next(inputs))
-    print(len(a&b))
-    n, m = map(int, next(inputs).split())
+        if int(sys.stdin.readline()) in a:
+            count += 1
+
+    print(count)
+
+    n, m = map(int, sys.stdin.readline().split())
