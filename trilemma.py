@@ -1,4 +1,3 @@
-from math import sqrt
 n = int(input())
 for case in range(1, n+1):
     x1, y1, x2, y2, x3, y3 = map(int, input().split())
@@ -9,13 +8,8 @@ for case in range(1, n+1):
     ss.sort()
 
     aa, bb, cc = ss
-    a, b, c = sqrt(aa), sqrt(bb), sqrt(cc)
     ans = ''
-    if a + b <= c:
-        ans = 'not a triangle'
-    elif aa == 0:
-        ans = 'not a triangle'
-    elif (x2-x1)*(y3-y1) == (x3-x1)*(y2-y1) or (x1-x2)*(y3-y2) == (x3-x2)*(y1-y2):
+    if (x2-x1)*(y3-y1) == (x3-x1)*(y2-y1) or (x1-x2)*(y3-y2) == (x3-x2)*(y1-y2):
         ans = 'not a triangle'
     elif aa + bb == cc:
         if aa == bb:
