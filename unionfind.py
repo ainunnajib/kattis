@@ -39,12 +39,11 @@ class UFDS:
     def size(self, x):
         return self.sizes[self.find(x)]
 
-inputs = iter(stdin.readlines())
-n, q = map(int, next(inputs).split())
+n, q = map(int, stdin.readline().split())
 u = UFDS(n)
 
 for _ in range(q):
-    s = next(inputs).split()
+    s = stdin.readline().split()
     a, b = map(int, s[1:])
 
     if s[0] == '?':
