@@ -1,3 +1,5 @@
+from sys import stdin, stdout
+
 class UFDS:
     def __init__(self, n):
         self.parents = list(range(n))
@@ -53,12 +55,12 @@ class UFDS:
         else:
             return False
 
-n, l = map(int, input().split())
+n, l = map(int, stdin.readline().split())
 u = UFDS(l)
 for _ in range(n):
-    a, b = map(int, input().split())
+    a, b = map(int, stdin.readline().split())
     a -= 1
     b -= 1
 
     u.union(a, b)
-    print('LADICA' if u.takeslot(a) else 'SMECE')
+    stdout.write('LADICA\n' if u.takeslot(a) else 'SMECE\n')
