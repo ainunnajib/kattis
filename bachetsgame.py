@@ -1,42 +1,20 @@
-state = []
-moves = []
-def whowins(left, player):
-    if state[left] != -1:
-        return (state[left] + player)%2
+from sys import *
+line = stdin.readline()
+while line != '':
+    s = list(map(int, line.split()))
+    n = s[0]
+    m = s[1]
+    moves = set(s[2:])
+    iwin = [False for _ in range(n+1)]
+    for i in range(1, n+1):
+        for move in moves:
+            if i >= move and not iwin[i-move]:
+                iwin[i] = True
+                break
 
-    if left == 1:
-        state[left] = 0
-        return player
+    if iwin[n]:
+        print('Stan wins')
+    else:
+        print('Ollie wins')
 
-    for option in moves:
-        if option == left:
-            state[left] = 0
-            return player
-
-        if option < left:
-            trywinner = whowins(left-option, 1-player)
-            if trywinner == player:
-                state[left] = 0
-                return player
-
-    state[left] = 1
-    return (1-player)
-
-while True:
-    try:
-        s = list(map(int, input().split()))
-        n = s[0]
-        state = [-1 for i in range(n+1)]
-        m = s[1]
-        moves = s[2:]
-
-        for x in range(1, n+1):
-            throwaway = whowins(x, 0)
-
-        winner = whowins(n, 0)
-        if winner == 0:
-            print('Stan wins')
-        else:
-            print('Ollie wins')
-    except EOFError:
-        break
+    line = stdin.readline()
