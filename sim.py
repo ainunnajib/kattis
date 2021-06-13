@@ -19,7 +19,8 @@ for _ in range(int(input())):
             athome = True
             cur = start
         elif c == ']':
-            athome = False
+            if end >= 0:
+                athome = False
             cur = end
         elif c == '<':
             if not athome:
