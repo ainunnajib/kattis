@@ -1,6 +1,6 @@
 from sys import *
-for _ in range(int(stdin.readline())):
-    s = stdin.readline()
+for _ in range(int(input())):
+    s = input()
     # typing char always append/insert ahead except at home
     athome = True
     prv, nxt = {}, {}
@@ -13,7 +13,9 @@ for _ in range(int(stdin.readline())):
             x = prv[cur]
             z = nxt[cur]
 
-        if c == '[':
+        if c == '\n':
+            break
+        elif c == '[':
             athome = True
             cur = start
         elif c == ']':
@@ -26,7 +28,7 @@ for _ in range(int(stdin.readline())):
                     cur = x
                 else:
                     athome = True
-                    start, cur = -1, -1
+                    start, cur = z, z
                 if z >= 0:
                     prv[z] = x
                 if end == y:
@@ -50,7 +52,10 @@ for _ in range(int(stdin.readline())):
             if end < 0:
                 end = cur
 
-    stdout.write(s[start])
-    while nxt[start] >= 0:
-        start = nxt[start]
+    if start >= 0:
         stdout.write(s[start])
+        while nxt[start] >= 0:
+            start = nxt[start]
+            stdout.write(s[start])
+    stdout.write('\n')
+stdout.flush()
