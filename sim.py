@@ -1,20 +1,56 @@
-import sys
-t = int(sys.stdin.readline())
-for line in sys.stdin.readlines():
-#for _ in range(t):
-    a, b = [], []
-    #for c in sys.stdin.readline().strip():
-    for c in line.strip():
+from sys import *
+for _ in range(int(stdin.readline())):
+    s = stdin.readline()
+    # typing char always append/insert ahead except at home
+    athome = True
+    prv, nxt = {}, {}
+    start, cur, end = -1, -1, -1
+
+    for i in range(len(s)):
+        c = s[i]
+        x, y, z = -1, cur, -1
+        if cur >= 0:
+            x = prv[cur]
+            z = nxt[cur]
+
         if c == '[':
-            a.extend(b)
-            b = a
-            a = []
+            athome = True
+            cur = start
         elif c == ']':
-            a.extend(b)
-            b = []
+            athome = False
+            cur = end
         elif c == '<':
-            if len(a) > 0:
-                a.pop(-1)
+            if not athome:
+                if x >= 0:
+                    nxt[x] = z
+                    cur = x
+                else:
+                    athome = True
+                    start, cur = -1, -1
+                if z >= 0:
+                    prv[z] = x
+                if end == y:
+                    end = x
         else:
-            a.append(c)
-    print(''.join(a+b))
+            cur = i
+            if athome:
+                prv[cur] = -1
+                nxt[cur] = start
+                prv[start] = cur
+                start = cur
+                athome = False
+            else:
+                nxt[y] = cur
+                prv[cur] = y
+                nxt[cur] = z
+            
+                if end == y:
+                    end = cur
+
+            if end < 0:
+                end = cur
+
+    stdout.write(s[start])
+    while nxt[start] >= 0:
+        start = nxt[start]
+        stdout.write(s[start])
